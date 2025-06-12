@@ -1,6 +1,6 @@
 // import Image from "next/image";
 
-import SignUp from "./SignUp/SignUp";
+// import SignUp from "./SignUp/SignUp";
 
 export default function Home() {
   return (
