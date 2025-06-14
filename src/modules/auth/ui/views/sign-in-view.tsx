@@ -1,6 +1,7 @@
 "use client"
 import { Card, CardContent } from "@/components/ui/card"
 import { Video } from "lucide-react"
+import {FaGoogle, FaGithub} from "react-icons/fa";
 import {z} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {Input} from "@/components/ui/input";
@@ -52,6 +53,7 @@ export const SignInView = () => {
         },
 });
   }
+
   return(
     <div className="flex flex-col gap-6">
     <Card className="overflow-hidden p-0">
@@ -119,13 +121,21 @@ export const SignInView = () => {
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                         <Button
+                        disabled={pending}
                          variant="outline"
                          type="button"
-                        className="w-full"></Button>
+                         onClick={()=>authClient.signIn.social({ 
+                                      provider: "google"
+                                    })}
+                        className="w-full"><FaGoogle/></Button>
                         <Button
+                         disabled={pending}
                          variant="outline"
                          type="button"
-                        className="w-full"></Button>
+                         onClick={()=>authClient.signIn.social({
+                                       provider: "github"
+                                      })}
+                        className="w-full"><FaGithub/></Button>
                     </div>
                     <div className="text-center text-sm">
                         Don&apos;t have an account?{""}

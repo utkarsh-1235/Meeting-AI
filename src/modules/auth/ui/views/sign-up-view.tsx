@@ -1,6 +1,7 @@
 "use client"
 import { Card, CardContent } from "@/components/ui/card"
 import { Video } from "lucide-react"
+import {FaGoogle, FaGithub} from "react-icons/fa";
 import {z} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {Input} from "@/components/ui/input";
@@ -167,11 +168,17 @@ export const SignUpView = () => {
                         <Button
                          variant="outline"
                          type="button"
-                        className="w-full"></Button>
+                         onClick={()=>authClient.signIn.social({
+                                        provider: "google"
+                                    })}
+                        className="w-full"><FaGoogle/></Button>
                         <Button
                          variant="outline"
                          type="button"
-                        className="w-full"></Button>
+                         onClick={()=>authClient.signIn.social({
+                                        provider: "github"
+                                        })}
+                         className="w-full"><FaGithub/></Button>
                     </div>
                     <div className="text-center text-sm">
                         Already have an account?{""}
