@@ -1,6 +1,7 @@
 "use client"
 import { Button } from "@/components/ui/button";
 import { authClient } from "@/lib/auth-client";
+import { DashboardNavbar } from "@/modules/dashboard/ui/components/dashboard-navbar";
 import { useRouter } from "next/navigation";
 
 
