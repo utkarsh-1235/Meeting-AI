@@ -15,12 +15,13 @@ export const HomeView = ()=>{
   return (
     <div className="flex flex-col p-4 gap-y-4">
       <p>Logged in as {session.user.name}</p>
-      <Button onClick={() => authClient.signOut({
+      <Button  className=" w-full" 
+               onClick={() => authClient.signOut({
              fetchOptions: {
                 onSuccess: async () => { await router.push("/sign-in"); }
              }
       })}
-              className="w-full">
+              >
         Sign out
       </Button>
     </div>

@@ -155,7 +155,7 @@ export const SignUpView = () => {
                         )
                     }
                     <Button
-                     className="w-full bg-gradient-to-r from-green-600 to-green-800 hover:from-green-700 hover:to-green-900"
+                     className="w-full hover:from-green-700 hover:to-green-900"
                      type="submit"
                      disabled={pending}>
                         Sign up
@@ -187,7 +187,7 @@ export const SignUpView = () => {
                 </div>
             </form>
              </Form>
-            <div className="bg-radial from-green-700 to-green-900 relative hidden md:flex flex-col gap-y-4 items-center justify-center">
+            <div className="bg-radial from-sidebar-accent to-sidebar relative hidden md:flex flex-col gap-y-4 items-center justify-center">
                 <Video className="h-[92px] w-[92px] text-white"/>
                 <p className="text-2xl font-semibold text-white">Meet.AI</p>
             </div>
