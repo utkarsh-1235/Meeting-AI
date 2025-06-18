@@ -10,11 +10,11 @@ const Page = () => {
  return (
     <HydrationBoundary state={dehydrate(queryClient)}>
         <Suspense fallback={<AgentsViewLoading/>}>
-        <ErrorBoundary errorComponent={AgentsViewError}>
+ <ErrorBoundary errorComponent={AgentsViewError}>
  <AgentsView/>
  </ErrorBoundary>
- </Suspense>
- </HydrationBoundary>
+   </Suspense>
+  </HydrationBoundary>
  )
 }
 

@@ -1,7 +1,7 @@
 import { db } from "@/db";
 import { agents } from "@/db/schema";
 import {createTRPCRouter, baseProcedure} from "@/trpc/init";
-import { TRPCError } from "@trpc/server";
+// import { TRPCError } from "@trpc/server";
 
 
 export const agentRouter = createTRPCRouter({
@@ -11,7 +11,7 @@ export const agentRouter = createTRPCRouter({
         .from(agents)
  
     // await new Promise((resolve) => setTimeout(resolve, 5000));
-    throw new TRPCError({code: "BAD_REQUEST"});
+    // throw new TRPCError({code: "BAD_REQUEST"});
         
         return data;
     })
