@@ -30,7 +30,8 @@ export const MeetingsView = () => {
             {data.items.length === 0 && (
                                 <EmptyState
                                  title="Create your first meeting"
-                                 description="Schedule a meeting to connect with others"/>
+                                 description="Schedule a meeting to connect with others"
+                                 isActive={false}/>
                             )} 
         </div>
     );

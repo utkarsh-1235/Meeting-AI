@@ -6,12 +6,12 @@ import { useMutation, useQueryClient, useSuspenseQuery } from "@tanstack/react-q
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { MeetingIdViewHeader } from "../Components/meeting-id-view-header";
-import { GeneratedAvatar } from "@/components/ui/generated-avatar";
-import { Badge } from "@/components/ui/badge";
-import { VideoIcon } from "lucide-react";
 import { UpdateMeetingDialog } from "../Components/update-meeting-dialog";
 import { useState } from "react";
 import { useConfirm } from "@/hooks/use-confirm";
+import { UpcomingState } from "../Components/upcoming";
+import { ActiveState } from "../Components/active-state";
+import { CancelledState } from "../Components/cancelled";
 
 interface Props {
     meetingId: string;
@@ -49,6 +49,12 @@ export const MeetingIdView = ({meetingId}: Props) => {
     
             await removeMeeting.mutateAsync({id: meetingId});
          }
+
+        const isActive = data.status === "active";
+        const isCompleted = data.status === "completed";
+        const isCancelled = data.status === "cancelled";
+        const isUpcoming = data.status === "upcoming";
+        const isProcessing = data.status === "processing";
    return(
     <>
     <RemoveConfirmation/>
@@ -62,27 +68,15 @@ export const MeetingIdView = ({meetingId}: Props) => {
     meetingName={data.name}
     onEdit={()=>{setUpdateMeetingDialogOpen(true)}}
     onRemove={handleRemoveMeeting}/>
-         <div className="bg-white rounded-lg border">
-                      <div className="px-4 py-5 gap-y-5 flex flex-col col-span-5">
-                        <div className="flex items-center gap-x-3">
-                            <GeneratedAvatar
-                            variant="botttsNeutral"
-                            seed={data.name}
-                            className="size-10"/>
-                            <h2 className="text-2xl font-medium">{data.name}</h2>
-                        </div>
-                        <Badge
-                        variant="outline"
-                        className="flex items-center gap-x-2 [&>svg]:size-4">
-                           <VideoIcon className="text-blue"/>
-                           {/* {data} {data.count === 1 ? "meeting" : "meetings"} */}
-                        </Badge>
-                        <div className="flex flex-col gap-y-4">
-                            <p className="text-lg font-medium">{}</p>
-                            <p className="text-neutral-800">{data.status}</p>
-                        </div>
-                      </div>
-                    </div>
+         {isCancelled && <CancelledState/>}
+         {isProcessing && <div></div>}
+         {isCompleted && <div></div>}
+         {isActive && <ActiveState meetingId={meetingId}/>}
+         {isUpcoming && <UpcomingState
+                         meetingId={meetingId}
+                         onCancelMeeting={()=>{}}
+                         isCancelling={false}/>}
+
     </div>
     </>
    )
