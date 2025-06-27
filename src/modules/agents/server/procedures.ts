@@ -23,7 +23,6 @@ export const agentRouter = createTRPCRouter({
         if(!updateAgent){
             throw new TRPCError({ code: "NOT_FOUND", message: "Agent not found"});
         }
-    console.log("updateAgent", updateAgent);
  
     // await new Promise((resolve) => setTimeout(resolve, 5000));
     // throw new TRPCError({code: "BAD_REQUEST"});

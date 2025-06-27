@@ -4,7 +4,7 @@ import { AgentsListheader } from "@/modules/agents/ui/components/agents-list-hea
 import { AgentsView, AgentsViewError, AgentsViewLoading } from "@/modules/agents/ui/views/agent-view";
 import { getQueryClient, trpc } from "@/trpc/server";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
-import { ErrorBoundary } from "next/dist/client/components/error-boundary";
+import { ErrorBoundary } from "react-error-boundary";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { SearchParams } from "nuqs";
@@ -33,7 +33,7 @@ const Page = async({searchParams}: Props) => {
   <AgentsListheader/>
     <HydrationBoundary state={dehydrate(queryClient)}>
         <Suspense fallback={<AgentsViewLoading/>}>
- <ErrorBoundary errorComponent={AgentsViewError}>
+ <ErrorBoundary fallback={<AgentsViewError/>}>
  <AgentsView/>
  </ErrorBoundary>
    </Suspense>
