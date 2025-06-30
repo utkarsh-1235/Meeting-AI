@@ -9,7 +9,7 @@ import { meetingsInsertSchema, meetingsUpdateSchema } from "../schma";
 import { meetingStatus } from "../type";
 import { streamVideo } from "@/lib/stream-video";
 import { generatedAvatarUri } from "@/lib/avatar";
-import { botttsNeutral } from "@dicebear/collection";
+// import { botttsNeutral } from "@dicebear/collection";
 
 // import { TRPCError } from "@trpc/server";
 
