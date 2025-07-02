@@ -16,6 +16,7 @@ import { GeneratedAvatar } from "@/components/ui/generated-avatar";
 import {format} from "date-fns";
 import { Badge } from "@/components/ui/badge";
 import { formatDuration } from "@/lib/utils";
+import { Transcript } from "./Transcript";
 
  interface Props {
     data: MeetingGetOne
@@ -48,6 +49,9 @@ import { formatDuration } from "@/lib/utils";
                     <ScrollBar orientation="horizontal"/>
                 </ScrollArea>
              </div>
+             <TabsContent value="transcript">
+                <Transcript meetingId={data.id}/>
+             </TabsContent>
              <TabsContent value="recording">
                 <div className="bg-white rounded-lg border px-4 py-5">
                       <video
@@ -112,6 +116,12 @@ import { formatDuration } from "@/lib/utils";
                             ),
                             strong: (props) => (
                                <strong className="font-semibold" {...props}/>
+                            ),
+                            code: (props) => (
+                               <code className="bg-gray-100 px-1 py-0.5 rounded" {...props}/>
+                            ),
+                            blockquote: (props) => (
+                               <blockquote className="border-l-4 pl-4 italic my-4" {...props}/>
                             ),
                          }}>
                             {data.summary}
