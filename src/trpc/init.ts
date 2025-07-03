@@ -23,7 +23,8 @@ export const createTRPCRouter = t.router;
 export const createCallerFactory = t.createCallerFactory;
 export const baseProcedure = t.procedure;
 export const protectedProcedure = baseProcedure.use(async({ctx, next}) => {
-  const session = await auth.api.getSession({
+  try{
+     const session = await auth.api.getSession({
             headers: await headers(),
   })
 
@@ -31,4 +32,12 @@ export const protectedProcedure = baseProcedure.use(async({ctx, next}) => {
     throw new TRPCError({code: "UNAUTHORIZED", message: "Unauthorized"});
   }
   return next({ctx: {...ctx, auth: session}})
+  }catch(error){
+    console.error("[Better Auth Error]:", error);
+    throw new TRPCError({
+      code: "INTERNAL_SERVER_ERROR",
+      message: "Authentication failed",
+    });
+  }
+  
 })

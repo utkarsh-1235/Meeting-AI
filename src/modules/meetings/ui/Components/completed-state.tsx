@@ -17,6 +17,8 @@ import {format} from "date-fns";
 import { Badge } from "@/components/ui/badge";
 import { formatDuration } from "@/lib/utils";
 import { Transcript } from "./Transcript";
+import { ChatProvider } from "./chat-provider";
+
 
  interface Props {
     data: MeetingGetOne
@@ -49,6 +51,9 @@ import { Transcript } from "./Transcript";
                     <ScrollBar orientation="horizontal"/>
                 </ScrollArea>
              </div>
+             <TabsContent value="chat">
+               <ChatProvider meetingId={data.id} meetingName={data.name}/>
+             </TabsContent>
              <TabsContent value="transcript">
                 <Transcript meetingId={data.id}/>
              </TabsContent>
