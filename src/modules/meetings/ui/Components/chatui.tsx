@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {useMutation} from "@tanstack/react-query";
 import {Channel as StreamChannel, StreamChat} from "stream-chat";
 import {
-    useCreateChatClient,
+    // useCreateChatClient,
     Chat,
     Channel,
     MessageList,
@@ -24,7 +24,7 @@ interface ChatUIProps{
 
 export const ChatUi = ({
     meetingId,
-    meetingName,
+    // meetingName,
     userId,
     userName,
     userImage
