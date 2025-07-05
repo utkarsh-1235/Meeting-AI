@@ -40,7 +40,11 @@ export const ChatUi = ({
     useEffect(() => {
     const initChat = async () => {
       try {
-        const { token } = await generateChatToken();
+       const res = await generateChatToken();
+        if (!res?.token) {
+              throw new Error("Failed to fetch chat token");
+          }
+          const { token } = res;
         const chatClient = StreamChat.getInstance(
             process.env.NEXT_PUBLIC_STREAM_CHAT_API_KEY!,
         );
