@@ -35,6 +35,7 @@ export const CallConnect = ({
     )
 
     const [client, setClient] = useState<StreamVideoClient>();
+
     useEffect(()=>{
         const _client = new StreamVideoClient({
             apiKey: process.env.NEXT_PUBLIC_STREAM_VIDEO_API_KEY!,
@@ -58,34 +59,18 @@ export const CallConnect = ({
     },[userId, userName, userImage, generateToken])
 
     const [call, setCall] = useState<Call>();
+
+
 useEffect(() => {
     if (!client) return;
 
-    let _call: Call;
-
-    const setupCall = async () => {
-        _call = client.call("default", meetingId);
-         await _call.camera.enable();
-        // _call.microphone.enable();
-        if (!_call.microphone.enabled) {
-            await _call.microphone.enable();
-        }
-
-        // Listen to AI and transcription
-        _call.on("ai_message", (msg) => {
-          console.log("🧠 AI responded:", msg.text);
-        });
-
-        _call.on("transcription", (event) => {
-          console.log("🎤 You said:", event.text);
-        });
-        setCall(_call);
-    };
-
-    setupCall();
+    const _call = client.call("default", meetingId);
+    _call.camera.disable();
+    _call.microphone.disable();
+    setCall(_call);
 
     return () => {
-        if (_call && _call.state.callingState !== CallingState.LEFT) {
+        if (_call.state.callingState !== CallingState.LEFT) {
             _call.leave();
             _call.endCall();
             setCall(undefined);

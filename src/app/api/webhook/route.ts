@@ -3,12 +3,12 @@ import {ChatCompletionMessageParam} from "openai/resources/index.mjs"
 import {and, eq} from "drizzle-orm";
 import { NextResponse, NextRequest } from "next/server";
 import {
-    MessagedNewEvent,
     CallEndedEvent,
     CallRecordingReadyEvent,
     CallSessionParticipantLeftEvent,
     CallSessionStartedEvent,
-    CallTranscriptionReadyEvent
+    CallTranscriptionReadyEvent,
+    MessageNewEvent
 } from "@stream-io/node-sdk";
 
 import {db} from "@/db";
@@ -169,7 +169,7 @@ export async function POST(req: NextRequest) {
       .where(eq(meetings.id, meetingId));
     
     }else if(eventType === "message.new"){
-      const event = payload as MessagedNewEvent;
+      const event = payload as unknown as MessageNewEvent;
 
       const userId = event.user?.id;
       const channelId = event.channel_id;
